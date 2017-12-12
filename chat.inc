@@ -8,8 +8,11 @@
 #include <logger>
 #include <tick-difference>
 #include <mentions>
+#include <language>
+#include <timeutil>
 
 #include "mute.inc"
+#include "message.inc"
 
 #include <YSI\y_hooks>
 
@@ -23,7 +26,8 @@ enum CHAT_MODE {
 	CHAT_MODE_ACTION,	// Perform /me actions locally
 	CHAT_MODE_GLOBAL,	// Speak to all players
 	CHAT_MODE_RADIO,	// Speak to players on the same radio frequency
-	CHAT_MODE_ADMIN		// Speak to admins
+	// todo: remove
+//	CHAT_MODE_ADMIN		// Speak to admins
 }
 
 static
@@ -44,9 +48,9 @@ hook OnPlayerConnect(playerid) {
 hook OnPlayerText(playerid, text[]) {
 	if(IsPlayerMuted(playerid)) {
 		if(GetPlayerMuteRemainder(playerid) == -1) {
-			ChatMsgLang(playerid, RED, "MUTEDPERMAN");
+			ChatMsgLang(playerid, X11_RED, "MUTEDPERMAN");
 		} else {
-			ChatMsgLang(playerid, RED, "MUTEDTIMERM", MsToString(GetPlayerMuteRemainder(playerid) * 1000, "%1h:%1m:%1s"));
+			ChatMsgLang(playerid, X11_RED, "MUTEDTIMERM", MsToString(GetPlayerMuteRemainder(playerid) * 1000, "%1h:%1m:%1s"));
 		}
 		return Y_HOOKS_BREAK_RETURN_0;
 	} else {
@@ -54,7 +58,7 @@ hook OnPlayerText(playerid, text[]) {
 			chat_MessageStreak[playerid]++;
 			if(chat_MessageStreak[playerid] == 3) {
 				TogglePlayerMute(playerid, true, 30);
-				ChatMsgLang(playerid, RED, "MUTEDFLOODM");
+				ChatMsgLang(playerid, X11_RED, "MUTEDFLOODM");
 				return Y_HOOKS_BREAK_RETURN_0;
 			}
 		} else {
@@ -167,29 +171,32 @@ PlayerSendChat(playerid, message[], CHAT_MODE:mode, Float:frequency) {
 		}
 
 		SetPlayerChatBubble(playerid, processedMessage, COLOUR_CHAT_LOCAL, 40.0, 10000);
-	} else if(mode == CHAT_MODE_ADMIN) {
-		log("CHAT_ADMIN",
-			_i("playerid", playerid),
-			_s("message", message));
+	}
+	/*else if(mode == CHAT_MODE_ADMIN) {
+		// log("CHAT_ADMIN",
+		// 	_i("playerid", playerid),
+		// 	_s("message", message));
 
-		format(line1, 256, "%C[Admin] (%d) %P"SNOW": %s",
-			GetAdminRankColour(GetPlayerAdminLevel(playerid)),
-			playerid,
-			playerid,
-			processedMessage);
+		// format(line1, 256, "%C[Admin] (%d) %P"SNOW": %s",
+		// 	GetAdminRankColour(GetPlayerAdminLevel(playerid)),
+		// 	playerid,
+		// 	playerid,
+		// 	processedMessage);
 
-		_chat_truncate(line1, line2);
+		// _chat_truncate(line1, line2);
 
-		foreach(new i : Player) {
-			// todo: import admin module
-			// if(GetPlayerAdminLevel(i) > 0) {
-			// 	SendClientMessage(i, COLOUR_CHAT_LOCAL, line1);
+		// foreach(new i : Player) {
+		// 	// todo: import admin module
+		// 	// if(GetPlayerAdminLevel(i) > 0) {
+		// 	// 	SendClientMessage(i, COLOUR_CHAT_LOCAL, line1);
 
-			// 	if(!isnull(line2))
-			// 		SendClientMessage(i, COLOUR_CHAT_LOCAL, line2);
-			// }
-		}
-	} else if(mode == CHAT_MODE_RADIO) {
+		// 	// 	if(!isnull(line2))
+		// 	// 		SendClientMessage(i, COLOUR_CHAT_LOCAL, line2);
+		// 	// }
+		// }
+	}
+	*/
+	else if(mode == CHAT_MODE_RADIO) {
 		log("CHAT_RADIO",
 			_i("playerid", playerid),
 			_s("message", processedMessage));

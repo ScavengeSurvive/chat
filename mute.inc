@@ -1,5 +1,5 @@
-#include <YSI\y_hooks>
 #include <YSI\y_timers>
+#include <YSI\y_hooks>
 
 
 static
@@ -38,7 +38,7 @@ timer UnMuteDelay[time](playerid, time) {
 
 	TogglePlayerMute(playerid, false);
 	
-	ChatMsgLang(playerid, YELLOW, "MUTEDUNMUTE");
+	ChatMsgLang(playerid, X11_YELLOW, "MUTEDUNMUTE");
 }
 
 hook OnPlayerConnect(playerid) {
