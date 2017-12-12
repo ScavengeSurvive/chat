@@ -7,6 +7,8 @@ The Scavenge and Survive chat system, provides these methods of communicating:
 * Global: server-wide chat
 * Radio: server-wide chat where you can only talk to people on the same frequency
 
+Not a totally isolated package yet, does depend on the SS Administration package.
+
 ## Usage
 
 Simply add to your `pawn.json` and include:
