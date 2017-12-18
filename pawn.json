@@ -7,10 +7,11 @@
         "Misiur/YSI-Includes",
         "maddinat0r/sscanf",
         "Southclaws/samp-logger",
-        "ScavengeSurvive/test-boilerplate",
         "ScavengeSurvive/tick-difference",
         "ScavengeSurvive/mentions",
         "ScavengeSurvive/language",
-        "ScavengeSurvive/timeutil"
+        "ScavengeSurvive/timeutil",
+
+        "ScavengeSurvive/test-boilerplate"
     ]
 }
