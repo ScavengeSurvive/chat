@@ -1,3 +1,14 @@
+// built-in include guard removal
+// just in case the user has a local dependency with the same file name
+#if defined _inc_mute
+    #undef _inc_mute
+#endif
+// custom include-guard to ensure we don't duplicate
+#if defined _mute_included
+	#endinput
+#endif
+#define _mute_included
+
 #include <YSI\y_timers>
 #include <YSI\y_hooks>
 

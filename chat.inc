@@ -1,8 +1,15 @@
+// built-in include guard removal
+// just in case the user has a local dependency with the same file name
+#if defined _inc_chat
+    #undef _inc_chat
+#endif
+// custom include-guard to ensure we don't duplicate
 #if defined _chat_included
 	#endinput
 #endif
 #define _chat_included
 
+#include <a_samp>
 #include <YSI\y_colours>
 #include <YSI\y_iterate>
 #include <logger>

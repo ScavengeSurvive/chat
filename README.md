@@ -9,15 +9,15 @@ The Scavenge and Survive chat system, provides these methods of communicating:
 
 Not a totally isolated package yet, does depend on the SS Administration package.
 
-## Usage
+## Installation
 
-Simply add to your `pawn.json` and include:
+Simply install to your project:
 
-```json
-{
-    "dependencies": ["ScavengeSurvive/chat"]
-}
+```bash
+sampctl package install ScavengeSurvive/chat
 ```
+
+Include in your code and begin using the library:
 
 ```pawn
 #include <chat>

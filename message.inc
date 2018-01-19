@@ -1,3 +1,14 @@
+// built-in include guard removal
+// just in case the user has a local dependency with the same file name
+#if defined _inc_message
+    #undef _inc_message
+#endif
+// custom include-guard to ensure we don't duplicate
+#if defined _message_included
+	#endinput
+#endif
+#define _message_included
+
 #include <YSI\y_va>
 
 
